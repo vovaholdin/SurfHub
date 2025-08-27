@@ -7,6 +7,7 @@
     <groupId>com.goldin</groupId>
     <artifactId>SurfHub</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>war</packaging>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
