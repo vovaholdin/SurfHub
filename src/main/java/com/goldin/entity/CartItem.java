@@ -4,20 +4,22 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.function.Supplier;
 
-@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "surfs")
-public class Surf {
+@Entity
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "type_surf")
-    private String typeSurf;
-    @OneToMany(mappedBy = "surf")
-    private List<Surf> surfs;
+    private int quantity;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "surf_id")
+    private Surf surf;
 
 
 }
