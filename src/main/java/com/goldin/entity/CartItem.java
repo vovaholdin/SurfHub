@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Table(name = "cart_item")
 public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

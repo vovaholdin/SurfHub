@@ -17,7 +17,7 @@ public class Surf {
     @Column(name = "type_surf")
     private String typeSurf;
     @OneToMany(mappedBy = "surf")
-    private List<Surf> surfs;
+    private List<CartItem> surfs;
 
 
 }
