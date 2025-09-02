@@ -1,0 +1,102 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: vova
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: username
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: VARCHAR(100)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password_hash
+                  type: VARCHAR(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phone
+                  type: VARCHAR(50)
+                  constraints:
+                    nullable: false
+                    unique: true
+
+  - changeSet:
+      id: 2
+      author: vova
+      changes:
+        - createTable:
+            tableName: surfs
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: type_surf
+                  type: VARCHAR(25)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: INT
+                  constraints:
+                    nullable: false
+
+  - changeSet:
+      id: 3
+      author: vova
+      changes:
+        - createTable:
+            tableName: cart_item
+            columns:
+              - column:
+                  name: id
+                  type: SERIAL
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cart_user
+                    references: users(id)
+              - column:
+                  name: surf_id
+                  type: INT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_cart_surf
+                    references: surfs(id)
+
+  - changeSet:
+      id: 4
+      author: vova
+      changes:
+        - addColumn:
+            tableName: cart_item
+            columns:
+              - column:
+                  name: quantity
+                  type: int
+                  defaultValueNumeric: 1
+                  constraints:
+                    nullable: false
