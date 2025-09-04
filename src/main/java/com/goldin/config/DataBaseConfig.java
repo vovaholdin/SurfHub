@@ -59,23 +59,23 @@ public class DataBaseConfig {
         return transactionManager;
     }
 
-    @Bean
-    LocalContainerEntityManagerFactoryBean entityManagerFactory() {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource());
-        entityManagerFactoryBean.setPackagesToScan("com.goldin.entity.test");
-        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
-        Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
-        hibernateProperties.setProperty("hibernate.show_sql", "true");
-        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-        entityManagerFactoryBean.setJpaProperties(hibernateProperties);
-        return entityManagerFactoryBean;
-    }
-
-    @Bean
-    PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        return new JpaTransactionManager(entityManagerFactory);
-    }
+//    @Bean
+//    LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+//        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+//        entityManagerFactoryBean.setDataSource(dataSource());
+//        entityManagerFactoryBean.setPackagesToScan("com.goldin.entity.test");
+//        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+//        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+//        Properties hibernateProperties = new Properties();
+//        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
+//        hibernateProperties.setProperty("hibernate.show_sql", "true");
+//        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+//        entityManagerFactoryBean.setJpaProperties(hibernateProperties);
+//        return entityManagerFactoryBean;
+//    }
+//
+//    @Bean
+//    PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+//        return new JpaTransactionManager(entityManagerFactory);
+//    }
 }
