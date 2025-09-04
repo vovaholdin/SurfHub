@@ -16,8 +16,11 @@ public class Surf {
     private long id;
     @Column(name = "type_surf")
     private String typeSurf;
+    private String price;
     @OneToMany(mappedBy = "surf")
     private List<CartItem> surfs;
+
+
 
 
 }

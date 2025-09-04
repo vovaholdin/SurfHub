@@ -1,6 +1,7 @@
 package com.goldin.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import jakarta.persistence.EntityManagerFactory;
 import liquibase.integration.spring.SpringLiquibase;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -51,5 +57,25 @@ public class DataBaseConfig {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
         transactionManager.setSessionFactory(sessionFactory);
         return transactionManager;
+    }
+
+    @Bean
+    LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setDataSource(dataSource());
+        entityManagerFactoryBean.setPackagesToScan("com.goldin.entity.test");
+        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        entityManagerFactoryBean.setJpaVendorAdapter(vendorAdapter);
+        Properties hibernateProperties = new Properties();
+        hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "create");
+        hibernateProperties.setProperty("hibernate.show_sql", "true");
+        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+        entityManagerFactoryBean.setJpaProperties(hibernateProperties);
+        return entityManagerFactoryBean;
+    }
+
+    @Bean
+    PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 }
