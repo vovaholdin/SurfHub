@@ -2,7 +2,9 @@ package com.goldin.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -10,6 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "surfs")
+@Getter
+@Setter
 public class Surf {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,6 +23,7 @@ public class Surf {
     private String price;
     @OneToMany(mappedBy = "surf")
     private List<CartItem> surfs;
+    //todo add description for surfs
 
 
 

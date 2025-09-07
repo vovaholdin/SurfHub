@@ -1,6 +1,33 @@
 databaseChangeLog:
   - changeSet:
-      id: 0
+      id: 5
       author: vova
       changes:
-        -
+        - insert:
+            tableName: surfs
+            columns:
+              - column:
+                  name: type_surf
+                  value: "Longboard"
+              - column:
+                  name: price
+                  value: "279"
+        - insert:
+            tableName: surfs
+            columns:
+              - column:
+                  name: type_surf
+                  value: "Softboard"
+              - column:
+                  name: price
+                  value: "200"
+
+        - insert:
+            tableName: surfs
+            columns:
+              - column:
+                  name: type_surf
+                  value: "Shortboard"
+              - column:
+                  name: price
+                  value: "325"
