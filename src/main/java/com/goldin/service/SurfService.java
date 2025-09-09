@@ -6,6 +6,8 @@ import com.goldin.mapper.dto.SurfTo;
 import com.goldin.repository.SurfRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +16,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class SurfService {
+    private static final Logger logger = LoggerFactory.getLogger(SurfService.class);
     //save, findbyid, findall, delete, update
     @Autowired
     private SurfRepository surfRepository;
@@ -29,6 +32,7 @@ public class SurfService {
     }
 
     public SurfTo findById(Long id) {
+        logger.info("findById");
         return surfRepository.findById(id)
                 .map(mapper::toDto)
                 .orElseThrow();

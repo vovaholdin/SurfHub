@@ -1,18 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Shop</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
 <body>
-<h1>List</h1>
-<ul>
-    <li th:each="surf : ${surfs}">
-        Type: <span th:text="${surf.typeSurf}"></span>
-        Price: <span th:text="${surf.price}"></span>
-    </li>
-</ul>
+
 </body>
 </html>
