@@ -15,6 +15,7 @@ public class CartService {
     public CartItem addToCart(User user, Surf surf, int quantity) {
         return cartItemRepository.addToCart(user, surf, quantity);
     }
+
     public void removeFromCart(User user, Surf surf, int quantity) {
         cartItemRepository.removeFromCart(user, surf, quantity);
     }

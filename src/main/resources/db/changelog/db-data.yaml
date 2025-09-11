@@ -31,3 +31,5 @@ databaseChangeLog:
               - column:
                   name: price
                   value: "325"
+
+

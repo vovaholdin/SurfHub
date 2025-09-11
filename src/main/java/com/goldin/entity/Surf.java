@@ -21,11 +21,7 @@ public class Surf {
     @Column(name = "type_surf")
     private String typeSurf;
     private String price;
+    private String description;
     @OneToMany(mappedBy = "surf")
     private List<CartItem> surfs;
-    //todo add description for surfs
-
-
-
-
 }

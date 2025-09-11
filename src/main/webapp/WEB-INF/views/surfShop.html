@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-</head>
-<body>
-
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Shop</title>
+        <link rel="stylesheet" th:href="@{/resources/css/shop.css}">
+    </head>
+        <body>
+            <div th:each="surf : ${surfs}" class="card">
+                <p th:text="'Type: ' + ${surf.typeSurf}"></p>
+                <p th:text="'Price: ' + ${surf.price} + ' ₽'"></p>
+                <p th:text="'Description: ' + ${surf.description}"></p>
+            </div>
+        </body>
 </html>

@@ -1,19 +1,12 @@
 package com.goldin.config;
 
 import com.zaxxer.hikari.HikariDataSource;
-import jakarta.persistence.EntityManagerFactory;
 import liquibase.integration.spring.SpringLiquibase;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.JpaVendorAdapter;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 import java.util.Properties;
@@ -45,7 +38,7 @@ public class DataBaseConfig {
         sessionFactoryBean.setDataSource(dataSource());
         sessionFactoryBean.setPackagesToScan("com.goldin.entity");
         Properties props = new Properties();
-        props.setProperty("hibernate.hbm2ddl.auto", "update");
+        props.setProperty("hibernate.hbm2ddl.auto", "none");
         props.setProperty("hibernate.show_sql", "true");
         props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         sessionFactoryBean.setHibernateProperties(props);

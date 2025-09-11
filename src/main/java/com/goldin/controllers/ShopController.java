@@ -20,8 +20,7 @@ public class ShopController {
 
     @GetMapping
     public String shop(Model model) {
-        SurfTo byId = surfService.findById(2L);
-        model.addAttribute("surfs", byId);
+        model.addAttribute("surfs", surfService.findAll());
         return "surfShop";
     }
 }

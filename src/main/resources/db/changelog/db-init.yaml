@@ -100,3 +100,15 @@ databaseChangeLog:
                   defaultValueNumeric: 1
                   constraints:
                     nullable: false
+  - changeSet:
+      id: 6
+      author: vova
+      changes:
+        - addColumn:
+            tableName: surfs
+            columns:
+              - column:
+                  name: description
+                  type: varchar
+
+
