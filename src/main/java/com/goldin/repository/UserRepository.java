@@ -36,5 +36,12 @@ public class UserRepository {
         return Optional.of(em.merge(user));
     }
 
+    @Transactional
+    public Optional<User> findByUsername(String username) {
+        return Optional.of(em.createQuery("SELECT u from User u where u.name = :username", User.class)
+                .setParameter("username", username)
+                .getSingleResult());
+    }
+
 
 }
