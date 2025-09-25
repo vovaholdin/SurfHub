@@ -7,6 +7,7 @@ import com.goldin.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +21,12 @@ public class UserService {
     private UserRepository userRepository;
     @Autowired
     private UserMapperTo mapper;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     public UserTo save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user)
                 .map(mapper::toDto)
                 .orElseThrow();

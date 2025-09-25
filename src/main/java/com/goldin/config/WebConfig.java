@@ -33,8 +33,8 @@ public class WebConfig implements WebApplicationInitializer {
         dispatcher.setLoadOnStartup(1);
         dispatcher.addMapping("/");
 
-        FilterRegistration.Dynamic filter = servletContext.addFilter("springSecurityFilterChain", DelegatingFilterProxy.class);
-        filter.addMappingForUrlPatterns(null, false, "/*");
+//        FilterRegistration.Dynamic filter = servletContext.addFilter("springSecurityFilterChain", DelegatingFilterProxy.class);
+//        filter.addMappingForUrlPatterns(null, false, "/*");
 
     }
 

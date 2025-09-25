@@ -10,13 +10,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.context.AbstractSecurityWebApplicationInitializer;
 
 import java.util.Optional;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig implements UserDetailsService {
+public class SecurityConfig extends AbstractSecurityWebApplicationInitializer implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
     @Bean
@@ -25,7 +28,7 @@ public class SecurityConfig implements UserDetailsService {
                 authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/resources/**").permitAll()
-                                .requestMatchers("/").permitAll()
+                                .requestMatchers("/", "/registration").permitAll()
                                 .anyRequest().authenticated())
                 .formLogin()
                 .and()
@@ -44,5 +47,9 @@ public class SecurityConfig implements UserDetailsService {
                 .roles()
                 .build();
 
+    }
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
