@@ -28,10 +28,13 @@ public class SecurityConfig extends AbstractSecurityWebApplicationInitializer im
                 authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers("/resources/**").permitAll()
-                                .requestMatchers("/", "/registration").permitAll()
+                                .requestMatchers("/", "/registration", "/login").permitAll()
                                 .anyRequest().authenticated())
-                .formLogin()
-                .and()
+                .formLogin(form -> form
+                        .loginPage("/login")
+                        .loginProcessingUrl("/login")
+                        .defaultSuccessUrl("/", true)
+                        .failureUrl("/error"))
                 .logout();
         return http.build();
 

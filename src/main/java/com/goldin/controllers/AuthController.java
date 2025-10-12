@@ -16,23 +16,22 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/registration")
-public class RegistrationController {
+//@RequestMapping("/registration")
+public class AuthController {
     @Autowired
     private UserService userService;
     @Autowired
     private UserDetailsService userDetailsService;
-    @GetMapping
+    @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("user", new User());
         return "profile/registration";
     }
 
-    @PostMapping
-    public String registration(@ModelAttribute("user") User user, Model model, HttpServletRequest httpServletRequest) {
+    @PostMapping("/registration")
+    public String registration(@ModelAttribute("user") User user, HttpServletRequest httpServletRequest) {
         userService.save(user);
         UserDetails userDetails = userDetailsService.loadUserByUsername(user.getName());
         Authentication authentication = new UsernamePasswordAuthenticationToken(
@@ -47,5 +46,9 @@ public class RegistrationController {
                 SecurityContextHolder.getContext()
         );
         return "redirect:/";
+    }
+    @GetMapping("/login")
+    public String login() {
+        return "profile/login";
     }
 }

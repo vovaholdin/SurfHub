@@ -31,6 +31,7 @@ public class ViewResolverConfig implements WebMvcConfigurer {
     public SpringTemplateEngine templateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setTemplateResolver(templateResolver());
+        engine.addDialect(new org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect());
         return engine;
     }
 

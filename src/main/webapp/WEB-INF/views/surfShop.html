@@ -6,10 +6,13 @@
         <link rel="stylesheet" th:href="@{/resources/css/shop.css}">
     </head>
         <body>
+        <div th:class="cards">
             <div th:each="surf : ${surfs}" class="card">
                 <p th:text="'Type: ' + ${surf.typeSurf}"></p>
                 <p th:text="'Price: ' + ${surf.price} + ' ₽'"></p>
                 <p th:text="'Description: ' + ${surf.description}"></p>
+                <button>Add to cart</button>
             </div>
+        </div>
         </body>
 </html>
