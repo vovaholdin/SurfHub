@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аккаунт и корзина</title>
+    <link rel="stylesheet" th:href="@{resources/css/account.css}">
+</head>
+<body>
+<header>
+    <h1>Мой аккаунт</h1>
+</header>
+
+<main>
+    <div class="profile-container">
+        <div class="profile-item">
+            <span class="profile-label">Имя:</span>
+            <span th:text="${user.getName()}"></span>
+        </div>
+        <div class="profile-item">
+            <span class="profile-label">Почта:</span>
+            <span th:text="${user.getEmail()}"></span>
+        </div>
+        <div class="profile-item">
+            <span class="profile-label">Телефон:</span>
+            <span th:text="${user.getPhone()}"></span>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -42,7 +42,7 @@
                     <a class="nav-link" href="#contact">Contact</a>
                 </li>
                 <li class="nav-item">
-                    <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link btn-signup" href="/">Account</a>
+                    <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link btn-signup" href="/account">Account</a>
                     <a th:if="${#authorization.expression('!isAuthenticated()')}" class="nav-link btn-signup" href="/registration">Sign Up</a>
                 </li>
             </ul>

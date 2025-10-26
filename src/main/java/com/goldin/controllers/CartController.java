@@ -13,9 +13,4 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @PostMapping("/add")
-    public String addCart(@RequestParam int id) {
-//        cartService.addToCart()
-        return "redirect:/cart";
-    }
 }

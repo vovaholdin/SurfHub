@@ -6,13 +6,17 @@
         <link rel="stylesheet" th:href="@{/resources/css/shop.css}">
     </head>
         <body>
-        <div th:class="cards">
-            <div th:each="surf : ${surfs}" class="card">
+        <div class="cards">
+            <form th:each="surf : ${surfs}" th:action="@{/surfShop/cart/add}" method="post" class="card">
                 <p th:text="'Type: ' + ${surf.typeSurf}"></p>
-                <p th:text="'Price: ' + ${surf.price} + ' ₽'"></p>
+                <p th:text="'Price: ' + ${surf.price} + ' euro'"></p>
                 <p th:text="'Description: ' + ${surf.description}"></p>
-                <button>Add to cart</button>
-            </div>
+
+                <!-- Скрытые поля для передачи данных на сервер -->
+                <input type="hidden" name="surfId" th:value="${surf.id}" />
+                <button type="submit">Add to cart</button>
+            </form>
         </div>
+
         </body>
 </html>
