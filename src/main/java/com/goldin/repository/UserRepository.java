@@ -5,7 +5,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -41,6 +40,17 @@ public class UserRepository {
         return Optional.of(em.createQuery("SELECT u from User u where u.name = :username", User.class)
                 .setParameter("username", username)
                 .getSingleResult());
+    }
+
+    @Transactional
+    public Optional<User> findByIdRealUser(Long id) {
+        User user = em.createQuery("select u from User u " +
+                        "left join fetch u.cart ci " +
+                        "left join fetch ci.surf " +
+                        "where u.id = :id", User.class)
+                .setParameter("id", id)
+                .getSingleResult();
+        return Optional.of(user);
     }
 
 

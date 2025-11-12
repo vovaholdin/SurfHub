@@ -26,6 +26,13 @@
             <span th:text="${user.getPhone()}"></span>
         </div>
     </div>
+
+    <div class="center-button">
+        <a th:href="@{/cart(id=${user.getId()})}">
+            <button class="cart-btn">Перейти в корзину</button>
+        </a>
+    </div>
+
 </main>
 </body>
 </html>

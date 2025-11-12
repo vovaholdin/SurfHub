@@ -7,10 +7,13 @@ import com.goldin.repository.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,6 +38,10 @@ public class UserService {
 
     public UserTo findById(Long id) {
         return mapper.toDto(userRepository.findById(id).orElseThrow());
+    }
+
+    public Optional<User> findByIdRealUser(Long id) {
+        return userRepository.findByIdRealUser(id);
     }
 
     public List<UserTo> findAll() {

@@ -37,6 +37,9 @@ public class SurfService {
                 .map(mapper::toDto)
                 .orElseThrow();
     }
+    public Surf finfByIdRealSurf(Long id) {
+        return surfRepository.findById(id).orElseThrow();
+    }
 
     public SurfTo save(Surf surf) {
         return surfRepository.save(surf)
