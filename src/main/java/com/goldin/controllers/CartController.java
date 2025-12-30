@@ -55,7 +55,6 @@ public class CartController {
         cartService.removeFromCart(user, surfService.finfByIdRealSurf(id), 1);
         return "redirect:/cart";
     }
-    //todo решить ошибку с LazyInitialization из за этого контроллера
 
 
 }

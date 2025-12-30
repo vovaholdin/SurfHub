@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class UserService {
@@ -29,11 +30,14 @@ public class UserService {
 
 
     public UserTo save(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user)
-                .map(mapper::toDto)
-                .orElseThrow();
-
+        String info = isUserUnique(user);
+        if (info.isBlank()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            return userRepository.save(user)
+                    .map(mapper::toDto)
+                    .orElseThrow();
+        } else
+            throw new IllegalArgumentException("User with same " + info + " already exists");
     }
 
     public UserTo findById(Long id) {
@@ -65,6 +69,22 @@ public class UserService {
         return userRepository.update(user)
                 .map(mapper::toDto)
                 .orElseThrow();
+    }
+
+    private String isUserUnique(User user){
+        List<User> all = userRepository.findAll().toList();
+        for(User user1 : all){
+            if (user1.getName().equals(user.getName())) {
+                return "name";
+            }
+            if (user1.getEmail().equals(user.getEmail())) {
+                return "email";
+            }
+            if (user1.getPhone().equals(user.getPhone())) {
+                return "phone";
+            }
+        }
+        return "";
     }
 
 }
