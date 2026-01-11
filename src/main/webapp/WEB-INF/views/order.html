@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order</title>
+    <link rel="stylesheet" href="order.css">
+</head>
+<style>
+    #loader {
+        width: 32px;
+        height: 32px;
+        border: 4px solid #ccc;
+        border-top-color: #3498db;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin-top: 10px;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+</style>
+<body>
+
+<div class="order-container">
+    <h1>Order summary</h1>
+
+    <div class="order-item">
+        <p th:text="${item.typeSurf}"></p>
+    </div>
+
+
+
+    <hr>
+
+    <button id="buyBtn" type="button" onclick="startLoading()">
+        Купить
+    </button>
+
+    <div id="loader" style="display:none;">
+
+    </div>
+
+
+</div>
+
+
+<script>
+    function startLoading() {
+        const btn = document.getElementById('buyBtn');
+        const loader = document.getElementById('loader');
+
+        btn.disabled = true;
+        btn.style.display = 'none';
+        loader.style.display = 'inline-block';
+
+        // тут ты можешь отправить запрос на сервер через fetch/axios
+        // и уже по ответу остановить загрузку, если нужно
+    }
+</script>
+
+
+</body>
+</html>

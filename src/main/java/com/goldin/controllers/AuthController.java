@@ -20,10 +20,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 //@RequestMapping("/registration")
 public class AuthController {
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private UserDetailsService userDetailsService;
+
+    private final UserService userService;
+
+    private final UserDetailsService userDetailsService;
+
+    public AuthController(UserService userService, UserDetailsService userDetailsService) {
+        this.userService = userService;
+        this.userDetailsService = userDetailsService;
+    }
+
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("user", new User());
